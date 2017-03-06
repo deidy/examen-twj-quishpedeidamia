@@ -18,8 +18,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MasterURLService = (function () {
     function MasterURLService() {
-        this._url = "http://localhost:1337/";
-        //this._url = "";
+        //this._url = "http://localhost:1337";
+        this._url = "https://examen-twj-quishpedeidamia-deidy.c9users.io";
     }
     Object.defineProperty(MasterURLService.prototype, "url", {
         get: function () {
@@ -74,7 +74,7 @@ var HeroeComponent = (function () {
     }
     HeroeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._http.get(this._masterURL.url + "Heroe")
+        this._http.get(this._masterURL.url + "/heroe")
             .subscribe(function (res) {
             _this.heroes = res.json()
                 .map(function (value) {
@@ -95,7 +95,7 @@ var HeroeComponent = (function () {
             nivelHeroe: formulario.value.nivelHeroe,
             imagenHeroe: formulario.value.imagenHeroe
         };
-        this._http.post(this._masterURL.url + "Heroe", heroe)
+        this._http.post(this._masterURL.url + "/heroe", heroe)
             .subscribe(function (res) {
             console.log("No hubo Errores");
             console.log(res);
@@ -109,7 +109,7 @@ var HeroeComponent = (function () {
     };
     HeroeComponent.prototype.borrarHeroe = function (id) {
         var _this = this;
-        this._http.delete(this._masterURL.url + "Heroe/" + id)
+        this._http.delete(this._masterURL.url + "/heroe/" + id)
             .subscribe(function (res) {
             var heroeBorrado = res.json();
             _this.heroes = _this.heroes.filter(function (value) { return heroeBorrado.id != value.id; });
@@ -124,7 +124,7 @@ var HeroeComponent = (function () {
             nivelHeroe: heroe.nivelHeroe,
             imagenHeroe: heroe.imagenHeroe
         };
-        this._http.put(this._masterURL.url + "Heroe/" + heroe.id, parametos)
+        this._http.put(this._masterURL.url + "/heroe/" + heroe.id, parametos)
             .subscribe(function (res) {
             heroe.formularioCerrado = !heroe.formularioCerrado;
             console.log("Respuesta:", res.json());
@@ -222,7 +222,7 @@ var PoderComponent = (function () {
             .params
             .subscribe(function (parametros) {
             _this._parametros = parametros;
-            _this._http.get(_this._masterURL.url + 'Poder?idHeroe=' + _this._parametros.idHeroe)
+            _this._http.get(_this._masterURL.url + '/poder?idHeroe=' + _this._parametros.idHeroe)
                 .subscribe(function (res) {
                 _this.poderes = res.json()
                     .map(function (value) {
@@ -244,7 +244,7 @@ var PoderComponent = (function () {
             nivelPoder: formulario.value.nivelPoder,
             idHeroe: this._parametros.idHeroe
         };
-        this._http.post(this._masterURL.url + "Poder", poder)
+        this._http.post(this._masterURL.url + "/poder", poder)
             .subscribe(function (res) {
             _this.poderes.push(res.json());
             _this.nuevoPoder = {};
@@ -256,7 +256,7 @@ var PoderComponent = (function () {
     };
     PoderComponent.prototype.borrarPoder = function (id) {
         var _this = this;
-        this._http.delete(this._masterURL.url + "Poder/" + id)
+        this._http.delete(this._masterURL.url + "/poder/" + id)
             .subscribe(function (res) {
             var poderBorrado = res.json();
             _this.poderes = _this.poderes.filter(function (value) { return poderBorrado.id != value.id; });
@@ -270,7 +270,7 @@ var PoderComponent = (function () {
             danioPoder: poder.danioPoder,
             nivelPoder: poder.nivelHeroe
         };
-        this._http.put(this._masterURL.url + "Poder/" + poder.id, parametos)
+        this._http.put(this._masterURL.url + "/poder/" + poder.id, parametos)
             .subscribe(function (res) {
             poder.formularioCerrado = !poder.formularioCerrado;
             console.log("Respuesta:", res.json());
@@ -556,7 +556,7 @@ module.exports = "<h1 class=\"text-center\">Tus Héroes Favoritos</h1>\r\n<h2 cl
 /***/ 517:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <h1>Bienvenidos a una aplicación que te permite regitrar tus héroes favoritos con sus respectivos poderes</h1>\r\n\r\n  <div class=\"jumbotron\">\r\n    <h1>Héroes y Poderes!</h1>\r\n    <p>Registra tus héroes favoritos junto a sus poderes :) </p>\r\n    <p><a class=\"btn btn-primary btn-lg\" href=\"/heroe\" role=\"button\">Registra Héroes</a></p>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <h1>Bienvenidos a una aplicación que te permite regitrar tus héroes favoritos con sus respectivos poderes</h1>\r\n\r\n  <div class=\"jumbotron\">\r\n    <h1>Héroes y Poderes!</h1>\r\n    <p>Registra tus héroes favoritos junto a sus poderes :) </p>\r\n    <p><a class=\"btn btn-primary btn-lg\" [routerLink]=\"['/heroe']\" role=\"button\">Registra Héroes</a></p>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
