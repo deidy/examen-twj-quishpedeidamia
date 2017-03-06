@@ -28,7 +28,7 @@ export class PoderComponent implements OnInit {
       .params
       .subscribe(parametros => {
         this._parametros = parametros;
-        this._http.get(this._masterURL.url+'Poder?idHeroe='+this._parametros.idHeroe)
+        this._http.get(this._masterURL.url+'/poder?idHeroe='+this._parametros.idHeroe)
           .subscribe(
             (res:Response)=>{
               this.poderes = res.json()
@@ -55,7 +55,7 @@ export class PoderComponent implements OnInit {
       idHeroe:this._parametros.idHeroe
     };
 
-    this._http.post(this._masterURL.url+"Poder", poder)
+    this._http.post(this._masterURL.url+"/poder", poder)
       .subscribe(
         (res:Response)=>{
           this.poderes.push(res.json());
@@ -70,7 +70,7 @@ export class PoderComponent implements OnInit {
   }
 
   borrarPoder(id: number) {
-    this._http.delete(this._masterURL.url + "Poder/" + id)
+    this._http.delete(this._masterURL.url + "/poder/" + id)
       .subscribe(
         (res) => {
           let poderBorrado = res.json();
@@ -88,7 +88,7 @@ export class PoderComponent implements OnInit {
       danioPoder: poder.danioPoder,
       nivelPoder: poder.nivelHeroe
     };
-    this._http.put(this._masterURL.url + "Poder/" + poder.id, parametos)
+    this._http.put(this._masterURL.url + "/poder/" + poder.id, parametos)
       .subscribe(
         (res: Response) => {
           poder.formularioCerrado = !poder.formularioCerrado;

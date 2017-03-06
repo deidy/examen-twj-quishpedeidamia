@@ -21,7 +21,7 @@ export class HeroeComponent implements OnInit {
               private _masterURL: MasterURLService) { }
 
   ngOnInit() {
-    this._http.get(this._masterURL.url + "Heroe")
+    this._http.get(this._masterURL.url + "/heroe")
       .subscribe(
         (res: Response) => {
           this.heroes = res.json()
@@ -47,7 +47,7 @@ export class HeroeComponent implements OnInit {
       imagenHeroe: formulario.value.imagenHeroe
     };
 
-    this._http.post(this._masterURL.url + "Heroe", heroe)
+    this._http.post(this._masterURL.url + "/heroe", heroe)
       .subscribe(
         (res) => {
           console.log("No hubo Errores");
@@ -64,7 +64,7 @@ export class HeroeComponent implements OnInit {
   }
 
   borrarHeroe(id: number) {
-    this._http.delete(this._masterURL.url + "Heroe/" + id)
+    this._http.delete(this._masterURL.url + "/heroe/" + id)
       .subscribe(
         (res) => {
           let heroeBorrado = res.json();
@@ -83,7 +83,7 @@ export class HeroeComponent implements OnInit {
       nivelHeroe: heroe.nivelHeroe,
       imagenHeroe: heroe.imagenHeroe
     };
-    this._http.put(this._masterURL.url + "Heroe/" + heroe.id, parametos)
+    this._http.put(this._masterURL.url + "/heroe/" + heroe.id, parametos)
       .subscribe(
         (res: Response) => {
           heroe.formularioCerrado = !heroe.formularioCerrado;
